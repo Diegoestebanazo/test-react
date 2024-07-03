@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import MiComponente from './components/MiComponente';
+import FormNew from './components/form-new';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import logoBanco from './assets/img/logoBanco.png';
+
 
 function App() {
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+    <div>
+      <div className='logo'>
+        <img src={logoBanco} alt="Logo" width="200" />
+      </div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<MiComponente />} />
+          <Route path="/form" element={<FormNew />} />
+          {/* Agrega más rutas aquí */}
+        </Routes>
+      </Router>
     </div>
   );
 }

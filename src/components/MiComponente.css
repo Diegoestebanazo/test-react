@@ -1,0 +1,195 @@
+.description {
+    background-color: #929296;
+    color: white;
+    border-radius: 100%;
+    font-size: 8px;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.font-size {
+    font-size: 14px;
+
+}
+
+.table-header {
+    background-color: #f9fafc;
+}
+
+.flex {
+    display: flex;
+}
+
+.align-items-end {
+    align-items: center;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.gap-1 {
+    gap: 0.5rem;
+}
+
+
+
+.body {
+    background-color: #f4f6f9;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-top: 4rem;
+}
+
+.search {
+    border: solid 1px #c8c8cb;
+    border-radius: 8px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    height: 35px;
+    width: 150px
+}
+
+.search:focus {
+    outline: none;
+}
+
+.btn-agregar {
+    background-color: #f9de4b;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    padding: 1rem;
+    font-weight: bolder;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.table-container {
+    background-color: white;
+    padding: 1.5rem;
+    width: 100%;
+    /* max-width: 800px; */
+    margin: 0 auto;
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: auto;
+    margin-bottom: 20px;
+
+}
+
+.table thead {
+    background-color: #f9fafc;
+
+}
+
+.table th,
+table td {
+    padding: 9px;
+    padding-left: 2rem;
+    text-align: left;
+    border-bottom: solid 1px #dfdfdf;
+}
+
+
+
+.logo-product {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.index-result {
+    font-weight: 600;
+}
+
+.icon-option {
+    cursor: pointer;
+}
+
+.container-button {
+    margin-bottom: 20px;
+}
+
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-button {
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.tooltip-content {
+    visibility: visible;
+    /* width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px; */
+    opacity: 1;
+
+    width: 120px;
+    background-color: #fffcfc;
+    color: black;
+    text-align: center;
+    border-radius: 4px;
+    border: solid 1px #f5f5f5;
+    /* padding: 5px; */
+    padding-top: 5px;
+    padding-bottom: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: opacity 0.3s;
+    box-shadow: 1px 0px 4px 2px rgba(0, 0, 0, 0.1);
+}
+
+.tooltip-content::after {
+    /* content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent; */
+}
+
+.select-option {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    cursor: pointer;
+
+}
+
+.select-option:hover {
+    background-color: #eeeeee;
+}
