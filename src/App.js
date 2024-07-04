@@ -17,7 +17,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<MiComponente />} />
-          <Route path="/form" element={<FormNew />} />
+          <Route path="/form/:item?" element={<FormNew />} />
           {/* Agrega más rutas aquí */}
         </Routes>
       </Router>

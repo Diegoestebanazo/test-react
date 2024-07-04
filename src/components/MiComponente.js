@@ -1,22 +1,36 @@
 // src/components/Tabla.js
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+
 
 import './MiComponente.css';
 import logoBanco from '../assets/img/logoBanco.png';
 import icon from '../assets/icons/61140.png';
 import ApiProduct from '../services/api';
+import { Link, useNavigate } from 'react-router-dom';
+
 
 function Tabla() {
-
+  const [visibleTooltipId, setVisibleTooltipId] = useState(null);
+  const [shouldRedirect, setShouldRedirect] = useState(false);
+  const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState('');
 
   let [data, setData] = useState([]);
+
+  const toggleTooltip = (id) => {
+    setVisibleTooltipId(visibleTooltipId === id ? null : id);
+  };
+
+
+  const filteredData = data.filter((item) =>
+    item.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   useEffect(() => {
     ApiProduct.getProduct()
       .then((result) => {
         setData(result);
         data = result;
-        console.log(data);
       })
       .catch((error) => {
         console.error('Error al obtener los datos:', error);
@@ -26,14 +40,6 @@ function Tabla() {
   if (!data) {
     return <div>Cargando datos...</div>;
   }
-
-
-  // Estado para almacenar el ID de la fila con el tooltip visible
-  const [visibleTooltipId, setVisibleTooltipId] = useState(null);
-  const toggleTooltip = (id) => {
-    // Alternar la visibilidad del tooltip de la fila seleccionada
-    setVisibleTooltipId(visibleTooltipId === id ? null : id);
-  };
 
   function deleteProduct(productId) {
     ApiProduct.deleteProduct(productId)
@@ -46,13 +52,21 @@ function Tabla() {
   }
 
 
+
+  const editItem = (item) => {
+    const itemJson = encodeURIComponent(JSON.stringify(item));
+    navigate(`/form/${itemJson}`);
+
+
+  }
+
   return (
 
     <div >
-
       <div className='body'>
         <div className='flex justify-content-between align-items-center container-button'>
-          <input type="text" placeholder="Search..." className="search" />
+          <input type="text" placeholder="Search..." className="search" value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)} />
           <Link to="/form" className="btn-agregar">Agregar</Link>
         </div>
         <div className='table-container'>
@@ -61,18 +75,18 @@ function Tabla() {
               <tr>
                 <th >Logo  </th>
                 <th>Nombre del producto</th>
-                <th ><span className="flex align-items-end gap-1">
-                  Descripción <i className='description' > i</i>
+                <th ><span className="flex align-items-end">
+                  Descripción <i className='description ms-2' > i</i>
                 </span></th>
-                <th > <span className="flex align-items-end gap-1">Fecha de liberación <i className='description' > i</i></span> </th>
-                <th ><span className="justify-content-center flex align-items-end gap-1">
-                  Fecha de reestructuración <i className='description' > i</i>
+                <th > <span className="flex align-items-end">Fecha de liberación <i className='description ms-2' > i</i></span> </th>
+                <th ><span className="justify-content-center flex align-items-end">
+                  Fecha de reestructuración <i className='description ms-2' > i</i>
                 </span></th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              {data.map((item) => (
+              {filteredData.map((item) => (
                 <tr key={item.id}>
                   <td>{item.id}</td>
                   <td>{item.name}</td>
@@ -88,7 +102,7 @@ function Tabla() {
 
                       {visibleTooltipId === item.id && (
                         <div className="tooltip-content">
-                          <div className='select-option'>Editar</div>
+                          <div className='select-option' onClick={() => editItem(item)}>Editar</div>
                           <div className='select-option' onClick={() => deleteProduct(item.id)}>Eliminar</div>
                         </div>
                       )}

@@ -20,6 +20,7 @@ async function getProduct() {
                 id: item.id,
                 name: item.name,
                 description: item.description,
+                logo: item.logo,
                 date_release: date_revision,
                 date_revision: fechaRevision,
             };
@@ -42,22 +43,59 @@ function dateFormat(date) {
     return `${diaFormateado}/${mesFormateado}/${anio}`;
 }
 
+async function createProduct(productData) {
+    try {
+        const response = await fetch(`${base_url}bp/products`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'authorId': '1',
+            },
+            body: JSON.stringify(productData),
+        });
+        if (!response.ok) {
+            throw new Error('Error al crear el producto');
+        }
+        const data = await response.json();
+    } catch (error) {
+        console.error('Error en la solicitud POST:', error);
+    }
+}
+
+async function updateProduct(productData) {
+    try {
+        const response = await fetch(`${base_url}bp/products`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'authorId': '1',
+            },
+            body: JSON.stringify(productData),
+        });
+        if (!response.ok) {
+            throw new Error('Error al actualizar el producto');
+        }
+        const data = await response.json();
+        console.log('Producto actualizado:', data);
+    } catch (error) {
+        console.error('Error en la solicitud PUT:', error);
+    }
+}
 
 async function deleteProduct(productId) {
     try {
-        const response = await fetch(`${base_url}bp/products/${productId}`, {
+        const response = await fetch(`${base_url}bp/products?id=${productId}`, {
             method: 'DELETE',
             headers: {
-                'authorId': '1', // Asegúrate de ajustar el autor correcto
+                'authorId': '1',
             },
         });
         if (!response.ok) {
             throw new Error('Error al eliminar el producto');
         }
-        const data = await response.json();
     } catch (error) {
         console.error('Error en la solicitud DELETE:', error);
     }
 }
 
-export default { getProduct, deleteProduct };
+export default { getProduct, deleteProduct, createProduct, updateProduct };

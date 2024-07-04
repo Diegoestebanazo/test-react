@@ -3,13 +3,36 @@ input {
     height: 25px;
     padding: 10px;
     border-radius: 5px;
+    border: solid 1px #7b7b7e;
 }
 
-textarea {
-    width: 80%;
-    height: 25px;
-    padding: 10px;
-    border-radius: 5px;
+input:disabled {
+    background-color: #f6f6f6;
+    color: #7b7b7e;
+    border: solid 1px #c4c4c6;
+}
+
+.btn:disabled {
+    background-color: #fff199;
+    color: #aab0b9;
+}
+
+.disabled-font {
+    color: #b7b7b9;
+}
+
+.input-invalid {
+    border: solid 1px red;
+
+}
+
+.invalid-feedback {
+    color: red;
+
+}
+
+input:focus {
+    outline: none;
 }
 
 .title-center {
@@ -23,15 +46,11 @@ textarea {
 .row {
     display: flex;
     flex-wrap: wrap;
-    /* margin-right: -15px;
-    margin-left: -15px; */
 }
 
 .col {
     position: relative;
     width: 100%;
-    /* padding-right: 15px;
-    padding-left: 15px; */
     flex: 0 0 50%;
     max-width: 50%;
 }
